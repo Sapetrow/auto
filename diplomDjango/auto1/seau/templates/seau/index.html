@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список Заказ-Нарядов</title>
+</head>
+<body>
+<h1> Заказ-Наряды </h1>
+{% for aa in aas %}
+<div>
+    <a> Заказ-наряд</a><a href="/seau/{{aa.pk}}/"> {{aa.id}}   </a>
+    <a>{{aa.datepub}}</a>
+
+</div>
+{% endfor %}
+</body>
+</html>
