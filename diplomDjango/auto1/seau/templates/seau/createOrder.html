@@ -1,0 +1,22 @@
+{% extends "layout/basic.html" %}
+
+{% block title %} Добавление заказ наряда {% endblock %}
+
+{% block content %}
+<h1>Добавление заказ наряда</h1>
+<nav>
+    <a href="{% url 'add' %}">Добавить автомобиль</a>
+<p></p>
+<a href="{% url 'add1' %}">Добавить клиента</a>
+<p></p>
+<a href="{% url 'add2' %}">Добавить работы</a>
+<p></p>
+<a href="{% url 'add3' %}">Добавить товара</a>
+</nav>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Добавить">
+</form>
+
+{% endblock %}

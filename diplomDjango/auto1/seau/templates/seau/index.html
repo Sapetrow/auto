@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Список Заказ-Нарядов</title>
-</head>
-<body>
-<h1> Заказ-Наряды </h1>
+{% extends "layout/basic.html" %}
+
+{% block content %}
 {% for aa in aas %}
 <div>
-    <a> Заказ-наряд</a><a href="/seau/{{aa.pk}}/"> {{aa.id}}   </a>
-    <a>{{aa.datepub}}</a>
-
+    <a href="{% url 'by_order' aa.pk %}"> Заказ наряд {{aa.id}}   </a>
+    <a>Дата создания:{{aa.datepub}}</a>
 </div>
 {% endfor %}
-</body>
-</html>
+{% endblock %}

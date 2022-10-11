@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 
 # Create your models here.
 class Auto(models.Model):
@@ -14,7 +15,7 @@ class Auto(models.Model):
         ordering = ['number']
 
 class Client(models.Model):
-    lastname = models.CharField(max_length=15, verbose_name='Фамилия')
+    lastname = models.CharField(max_length=15, verbose_name='Фамилия', editable=True )
     firstname = models.CharField(max_length=15, verbose_name='Имя')
     middlename = models.CharField(max_length=15, verbose_name='Отчество')
     phone = models.CharField(max_length=11, verbose_name='Номер телефона')
@@ -29,6 +30,7 @@ class Product(models.Model):
     cod = models.CharField(max_length=10, verbose_name='Каталожный номер')
     nameproduct = models.CharField(max_length=20, verbose_name='Название товара')
     price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True, verbose_name='Стоимость')
+
 
     class Meta:
         verbose_name_plural = 'Товары'
@@ -46,20 +48,24 @@ class Work(models.Model):
         ordering = ['cod']
 
 class Order(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.PROTECT, db_constraint=True,verbose_name='клиент')
+
+    client = models.ForeignKey(Client, on_delete=models.PROTECT,db_constraint=True,verbose_name='клиент')
     auto = models.ForeignKey(Auto, null=True, on_delete=models.PROTECT, db_constraint=True, verbose_name='Автомобиль')
-    datepub = models.DateTimeField(auto_now=True)
-    work=models.ManyToManyField(Work)#, through='Kit', through_fields=('order', 'work'))
+    datepub = models.DateTimeField(auto_now=True, verbose_name='Дата открытия')
+    work=models.ManyToManyField(Work)
     product=models.ManyToManyField(Product)
+
+
+    def __str__(self):
+        return f"{self.id} {self.client.lastname} {self.auto.number}"
+
+
 
     class Meta:
         verbose_name_plural = 'Заказ-наряды'
         verbose_name = 'Заказ-наряд'
 
-#class Kit(models.Model):
-#    order=models.ForeignKey(Order, on_delete=models.CASCADE)
-#    work=models.ForeignKey(Work, on_delete=models.CASCADE)
- #   count=models.IntegerField()
+
 
 
 

@@ -1,0 +1,42 @@
+{% extends "layout/basic.html" %}
+
+{% block content %}
+
+<h1>Заказ-наряд</h1>
+
+<h2>Автомобиль:</h2>
+{% for o in orders %}
+<div>
+    <p>Гос.Номер: {{ o.number }}<p/>
+    <p>Марка, модель: {{ o.marka }} {{ o.model }} <p/>
+    <p>VIN номер: {{ o.vin }}<p/>
+</div>
+{% endfor %}
+
+<h2> Клиент </h2>
+{% for c in clients %}
+<div>
+    <p>ФИО: {{ c.lastname }} {{ c.firstname }} {{ c.middlename }}<p/>
+    <p>Номер телефона: {{ c.phone }}</p>
+    <p>Адрес: {{c.adress}}</p>
+</div>
+{% endfor %}
+
+<h2> Работы </h2>
+{% for w in works %}
+<div>
+
+    <p> {{ w.cod }} | {{ w.nameproduct }} | {{ w.price }} руб. </p>
+
+</div>
+{% endfor %}
+
+<h2> Запасные части </h2>
+
+{% for p in products %}
+<div>
+    <p> {{ p.cod }} | {{ p.nameproduct }} | {{ p.price }} руб. </p>
+</div>
+{% endfor %}
+{% endblock %}
+

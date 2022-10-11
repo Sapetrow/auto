@@ -3,6 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from .models import Auto, Client, Product, Work, Order
 
+
 class AutoAdmin(admin.ModelAdmin):
     list_display = ('number', 'marka', 'model', 'vin')
     list_display_links = ('number', 'marka')
@@ -22,6 +23,8 @@ class WorkAdmin(admin.ModelAdmin):
     list_display = ('cod', 'nameproduct', 'price')
     list_display_links = ('cod','nameproduct')
     search_fields = ('cod', 'nameproduct')
+
+
 
 
 

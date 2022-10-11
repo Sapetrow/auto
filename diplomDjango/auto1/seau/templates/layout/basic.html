@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%} Главная {% endblock %}::
+    Заказ-наряды</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'seau/style.css' %}">
+</head>
+<body bgcolor="grey">
+<header>
+  <nav>
+    <a href="/seau/">Главная</a>
+      <p></p>
+
+      <a href="{% url 'add4' %}">Создание заказ наряда</a>
+      <p></p>
+
+  </nav>
+    <section>
+        {% block content %}
+        {% endblock %}
+    </section>
+</header>
+</body>
+</html>
